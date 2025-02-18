@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manager Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    {% load static %}
+    <link rel="stylesheet" href="/static/css/manager_login.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <ul>
+            <li><a href="/employee/"><button><i class="fa fa-arrow-left"></i> Back</button></a></li>
+            <li class="push-right"><a href="/manager/register/"><button><i class="fa fa-user-plus"> Register</i></button></a></li>
+
+        </ul>
+    </nav>
+
+    <div class="login-container">
+        <h2>Manager Login</h2>
+
+        {% comment %} <!-- Display messages from Django's message framework -->
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li class="{% if message.tags == 'error' %}error{% else %}success{% endif %}">
+                        {{ message }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %} {% endcomment %}
+
+
+        <!-- Display Messages -->
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li class="{{ message.tags }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+
+        
+        <form method="POST" action="/manager/login/">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="username"></label>
+                <input type="text" id="username" name="username" placeholder="Enter your username" required>
+            </div>
+            <div class="form-group">
+                <label for="password"></label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            </div>
+            <div class="form-group">
+                <button type="submit">Login</button>
+            </div>
+
+            <div class="additional-links">
+            <a class="additional-links" href="/manager/forgot_password/">Forgot Password?</a><br>
+            </div>
+            {% comment %} <a href="/manager/register/" class="btn btn-success mx-2">Manager Register</a><br>
+            <label>back to dashboard</label> <a href="/employee" class="btn btn-success mx-2">Employee_Management</a> {% endcomment %}
+        </form>
+    </div>
+</body>
+</html>

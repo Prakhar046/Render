@@ -1,0 +1,445 @@
+{% comment %} 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Registration</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
+    {% load static %}
+    <link rel="stylesheet" href="/static/css/employee_form.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="text-center">Employee Registration</h1>
+    <a href="/employee/">Back to Employee_Management</a><br>
+    <a href="/employee/login/">Employee_login</a>
+
+    <!-- Display error or success message -->
+    {% if error_message %}
+        <div class="alert alert-danger" role="alert">
+            {{ error_message }}
+        </div>
+    {% endif %}
+    {% if success_message %}
+        <div class="alert alert-success" role="alert">
+            {{ success_message }}
+        </div>
+    {% endif %}
+    
+    <form action="/employee/save/" method="post">
+        {% csrf_token %}
+        
+        <!-- Employee ID -->
+        <div class="mb-3">
+            <label for="employee_id" class="form-label">Employee ID</label>
+            <input type="number" class="form-control" id="employee_id" name="employee_id" required>
+        </div>
+        
+        <!-- First Name -->
+        <div class="mb-3">
+            <label for="first_name" class="form-label">First Name</label>
+            <input type="text" class="form-control" id="first_name" name="first_name" required>
+        </div>
+        
+        <!-- Last Name -->
+        <div class="mb-3">
+            <label for="last_name" class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="last_name" name="last_name" required>
+        </div>
+        
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="text" class="form-control" id="password" name="password" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="confirm_password" class="form-label">Confirm Password</label>
+            <input type="text" class="form-control" id="confirm_password" name="confirm_password" required>
+        </div>
+
+        <!-- Email -->
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        
+        <!-- Phone -->
+        <div class="mb-3">
+            <label for="phone" class="form-label">Phone</label>
+            <input type="number" class="form-control" id="phone" name="phone" required>
+        </div>
+        
+        <!-- Date of Birth -->
+        <div class="mb-3">
+            <label for="date_of_birth" class="form-label">Date of Birth</label>
+            <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" required>
+        </div>
+        
+        <!-- Date of Joining -->
+        <div class="mb-3">
+            <label for="date_of_joining" class="form-label">Date of Joining</label>
+            <input type="date" class="form-control" id="date_of_joining" name="date_of_joining" required>
+        </div>
+        
+        <!-- Department -->
+        <div class="mb-3">
+            <label for="department_id" class="form-label">Department ID</label>
+            <input type="number" class="form-control" id="department_id" name="department_id" required>
+        </div>
+
+        <!-- Display Department Name -->
+        <div class="mb-3">
+            <label for="department_name" class="form-label">Department Name</label>
+            <input type="text" class="form-control" id="department_name" name="department_name" 
+                   value="{{ department_name }}" readonly>
+        </div>
+        
+        <!-- Role -->
+        <div class="mb-3">
+            <label for="role_id" class="form-label">Role ID</label>
+            <input type="number" class="form-control" id="role_id" name="role_id" required>
+        </div>
+        
+        <!-- Salary -->
+        <div class="mb-3">
+            <label for="salary" class="form-label">Salary</label>
+            <input type="number" step="0.01" class="form-control" id="salary" name="salary" required>
+        </div>
+        
+        <!-- Status -->
+        <div class="mb-3">
+            <label for="status" class="form-label">Status</label>
+            <select class="form-control" id="status" name="status" required>
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+            </select>
+        </div>
+        
+        <!-- Address -->
+        <div class="mb-3">
+            <label for="address" class="form-label">Address</label>
+            <textarea class="form-control" id="address" name="address" rows="3" required></textarea>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+</body>
+</html> {% endcomment %}
+
+
+
+
+
+
+{% comment %} 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Registration</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    {% load static %}
+    <link rel="stylesheet" href="/static/css/employee_form.css">
+</head>
+<body>
+
+
+    
+    <header>
+        <a href="/employee/"><button class = "logout"><i class="fa fa-home"></i></button></a>
+        <a href="/employee/login/"><button class = "logout"><i class="fa fa-arrow-left"></i> Employee Login</button></a>
+
+    </header>
+
+<div class="container mt-5">
+    <div class="form-container mx-auto">
+        <h1 class="text-center mb-4">Employee Registration</h1>
+
+
+        <!-- Display error or success message -->
+        {% if error_message %}
+            <div class="alert alert-danger" role="alert">
+                {{ error_message }}
+            </div>
+        {% endif %}
+        {% if success_message %}
+            <div class="alert alert-success" role="alert">
+                {{ success_message }}
+            </div>
+        {% endif %}
+        
+        <form action="/employee/save/" method="post">
+            {% csrf_token %}
+            
+            <!-- Employee ID -->
+            <div class="mb-3">
+                <label for="employee_id" class="form-label">Employee ID</label>
+                <input type="number" class="form-control" id="employee_id" name="employee_id" required>
+            </div>
+            
+            <!-- First and Last Name -->
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="first_name" class="form-label">First Name</label>
+                    <input type="text" class="form-control" id="first_name" name="first_name" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="last_name" class="form-label">Last Name</label>
+                    <input type="text" class="form-control" id="last_name" name="last_name" required>
+                </div>
+            </div>
+            
+            <!-- Password -->
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="confirm_password" class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+            </div>
+
+            <!-- Email -->
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            
+            <!-- Phone -->
+            <div class="mb-3">
+                <label for="phone" class="form-label">Phone</label>
+                <input type="tel" class="form-control" id="phone" name="phone" required>
+            </div>
+            
+            <!-- Date of Birth and Date of Joining -->
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="date_of_birth" class="form-label">Date of Birth</label>
+                    <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="date_of_joining" class="form-label">Date of Joining</label>
+                    <input type="date" class="form-control" id="date_of_joining" name="date_of_joining" required>
+                </div>
+            </div>
+            
+            <!-- Department -->
+            <div class="mb-3">
+                <label for="department_id" class="form-label">Department ID</label>
+                <input type="number" class="form-control" id="department_id" name="department_id" required>
+            </div>
+
+         
+            <!-- Role and Salary -->
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="role_id" class="form-label">Role ID</label>
+                    <input type="number" class="form-control" id="role_id" name="role_id" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="salary" class="form-label">Salary</label>
+                    <input type="number" step="0.01" class="form-control" id="salary" name="salary" required>
+                </div>
+            </div>
+            
+
+
+            <div class="mb-3">
+                <label for="status" class="form-label">Status</label>
+                <div id="status" required>
+                    <div>
+                        <input type="radio" id="active" name="status" value="Active">
+                        <label for="active">Active</label>
+                 
+                        <input type="radio" id="inactive" name="status" value="Inactive">
+                        <label for="inactive">Inactive</label>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <!-- Address -->
+            <div class="mb-3">
+                <label for="address" class="form-label">Address</label>
+                <textarea class="form-control" id="address" name="address" rows="3" required></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-primary w-25">Submit</button>
+        </form>
+    </div>
+</div>
+</body>
+</html> {% endcomment %}
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Registration</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" href="/static/css/employee_form.css">
+</head>
+<body>
+
+    
+
+    <!-- Glass Morphism Container -->
+    <div class="glass-container">
+        <h1 class="main-heading">Employee Registration</h1>
+
+        
+        <!-- Display error or success message -->
+        {% if error_message %}
+            <div class="alert alert-danger" role="alert">
+                <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
+                {{ error_message }}
+            </div>
+        {% endif %}
+        {% if success_message %}
+            <div class="alert alert-success" role="alert">
+                <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
+                {{ success_message }}
+            </div>
+        {% endif %}
+
+        <!-- Registration Form -->
+        <form method="POST" action="/employee/save/" class="registration-form">
+            {% csrf_token %}
+
+            <!-- Employee ID -->
+            <div class="form-group">
+                <input type="number" id="employee_id" name="employee_id" required placeholder=" ">
+                <label for="employee_id">Employee ID</label>
+            </div>
+
+            <!-- First Name -->
+            <div class="form-group">
+                <input type="text" id="first_name" name="first_name" required placeholder=" ">
+                <label for="first_name">First Name</label>
+            </div>
+
+            <!-- Last Name -->
+            <div class="form-group">
+                <input type="text" id="last_name" name="last_name" required placeholder=" ">
+                <label for="last_name">Last Name</label>
+            </div>
+
+            <!-- Password -->
+            <div class="form-group">
+                <input type="password" id="password" name="password" required placeholder=" ">
+                <label for="password">Password</label>
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="form-group">
+                <input type="password" id="confirm_password" name="confirm_password" required placeholder=" ">
+                <label for="confirm_password">Confirm Password</label>
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+                <input type="email" id="email" name="email" required placeholder=" ">
+                <label for="email">Email</label>
+            </div>
+
+            <!-- Phone -->
+            <div class="form-group">
+                <input type="tel" id="phone" name="phone" required placeholder=" ">
+                <label for="phone">Phone</label>
+            </div>
+
+            <!-- Date of Birth -->
+            <div class="form-group">
+                <input type="date" id="date_of_birth" name="date_of_birth" required placeholder=" ">
+                <label for="date_of_birth">Date of Birth</label>
+            </div>
+
+            <!-- Date of Joining -->
+            <div class="form-group">
+                <input type="date" id="date_of_joining" name="date_of_joining" required placeholder=" ">
+                <label for="date_of_joining">Date of Joining</label>
+            </div>
+
+            <!-- Department ID -->
+            <div class="form-group">
+                <input type="number" id="department_id" name="department_id" required placeholder=" ">
+                <label for="department_id">Department ID</label>
+            </div>
+
+            <!-- Role ID -->
+            <div class="form-group">
+                <input type="number" id="role_id" name="role_id" required placeholder=" ">
+                <label for="role_id">Role ID</label>
+            </div>
+
+            <!-- Salary -->
+            <div class="form-group">
+                <input type="number" step="0.01" id="salary" name="salary" required placeholder=" ">
+                <label for="salary">Salary</label>
+            </div>
+
+            {% comment %} <!-- Status -->
+            <div class="form-group">
+                <div id="status" required>
+                    <div>
+                        <input id="active" name="status" value="Active">
+                        <label for="active">Active</label>
+                    </div>
+                    <div>
+                        <input id="inactive" name="status" value="Inactive">
+                        <label for="inactive">Inactive</label>
+                    </div>
+                </div>
+            </div> {% endcomment %}
+
+
+
+            
+             <!-- Status -->
+            <div class="form-group">
+                <select id="status" name="status" required>
+                    <option value="" disabled selected hidden>Select Status</option>
+                    <option value="Active">Active</option>
+                    <option value="Inactive">Inactive</option>
+                </select>
+                <label for="status">Status</label>
+            </div>
+
+            
+
+            <!-- Address -->
+            <div class="form-group">
+                <textarea id="address" name="address" rows="3" required placeholder=" "></textarea>
+                <label for="address">Address</label>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="submit-btn">Register</button>
+
+            <!-- Login Link -->
+            <div class="login-link">
+                <p>Already have an account? <a href="/employee/login/">Login here</a></p>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

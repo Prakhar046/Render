@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    {% load static %}
+    <link rel="stylesheet" href="/static/css/employee_login.css">
+</head>
+<body>
+    
+    <nav class="navbar">
+        <ul>
+            <li><a href="/employee/"><button><i class="fa fa-arrow-left"></i> Back</button></a></li>
+            <li class = "push-right"><a href="/employee/form/"><button class ="btn"><i class="fa fa-user-plus"> Register</i></button></a></li>
+        </ul>
+    </nav>
+
+    <div class="login-container">
+        <h1>Employee Login</h1>
+
+        
+        {% comment %} <a class="additional-links" href="/employee/">Back to Employee_Management</a><br> {% endcomment %}
+        {% comment %} <a href="/employee/"><button>Back to Employee_Management</button></a><br> {% endcomment %}
+
+        {% comment %} <!-- Display messages from Django's message framework -->
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li class="{% if message.tags == 'error' %}error{% else %}success{% endif %}">
+                        {{ message }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %} {% endcomment %}
+
+
+        <!-- Display Messages -->
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li class="{{ message.tags }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <form method="POST" action="/employee/login/">
+            {% csrf_token %}
+            <div class="form-group">
+                {% comment %} <label for="first_name">First_name:</label> {% endcomment %}
+                <label for="employee_id"></label>
+                <input type="number" id="employee_id" name="employee_id"  placeholder= "Employee_id" required>
+            </div>
+            <div class="form-group">
+                {% comment %} <label for="password">Password:</label> {% endcomment %}
+                <label for="password"></label>
+                <input type="password" id="password" name="password" placeholder = "Password" required>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="login-btn">Login</button>
+            </div>
+        </form>
+
+        <div class="additional-links">
+            <a class="additional-links" href="/employee/forgot_password/">Forgot Password?</a><br>
+            {% comment %} <a class = "register" href="/employee/form/">Employee_register</a> {% endcomment %}
+        </div>
+    </div>
+</body>
+</html>

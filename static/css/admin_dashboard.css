@@ -1,0 +1,954 @@
+/* General Styles
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4f7fa;
+    color: #333;
+}
+
+
+.headers {
+    background: #4A90E2;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.headers button {
+    background: #fff;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.headers button:hover {
+    background: #f0f0f0;
+}
+
+.headers button i {
+    margin-right: 5px;
+}
+
+
+h1 {
+    text-align: center;
+    margin: 20px 0;
+    color: #4A90E2;
+}
+
+h3 {
+    color: #4A90E2;
+    margin-bottom: 15px;
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+}
+
+th {
+    background: #4A90E2;
+    color: #fff;
+}
+
+tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+tr:hover {
+    background: #f1f1f1;
+}
+
+
+.approve-btn, .reject-btn, .add {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.approve-btn {
+    background: #28a745;
+    color: #fff;
+}
+
+.approve-btn:hover {
+    background: #218838;
+}
+
+.reject-btn {
+    background: #dc3545;
+    color: #fff;
+}
+
+.reject-btn:hover {
+    background: #c82333;
+}
+
+.add {
+    background: #4A90E2;
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+.add:hover {
+    background: #357ABD;
+}
+
+
+.messages {
+    margin: 20px 0;
+}
+
+.messages ul {
+    list-style: none;
+    padding: 0;
+}
+
+.messages ul li {
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+}
+
+.messages .success {
+    background: #d4edda;
+    color: #155724;
+}
+
+.messages .error {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+
+section {
+    margin-bottom: 40px;
+}
+
+
+html {
+    scroll-behavior: smooth;
+} */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4f7fa;
+    color: #333;
+    
+}
+
+/* Header Styles */
+.header {
+    background: #4A90E2;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-left, .header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Header Buttons */
+.header-button {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none; /* Removes the underline */
+}
+
+.header-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.header-button:active {
+    transform: translateY(0);
+}
+
+/* Dropdown Styles */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-btn {
+    padding: 10px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    z-index: 1000;
+    min-width: 230px;
+    overflow: hidden;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #333;
+    transition: background 0.3s ease;
+}
+
+.dropdown-content a:hover {
+    background: #f4f7fa;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .header-left, .header-right {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .header-button {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+
+    .dropdown-content {
+        min-width: 150px;
+    }
+}
+
+.marquee-container {
+    width: 100%;
+    overflow: hidden;
+    background: linear-gradient(to right, #007bff, #00c6ff);
+    padding: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+marquee {
+    font-size: 22px;
+    font-weight: bold;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+
+/* Add scroll padding to all sections */
+section {
+    scroll-margin-top: 80px; /* Adjust this value based on your header height */
+}
+
+/* Admin Indicator Styles */
+.admin-indicator {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: fixed;
+    top: 20px;
+    float: right;
+    /* right: 680px; */
+    background: rgba(255, 255, 255, 0.9);
+    padding: 8px 15px;
+    border-radius: 25px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    font-size: 0.9rem;
+    color: #4A90E2;
+    z-index: 1000;
+}
+
+.admin-icon {
+    font-size: 1.2rem;
+    color: #4A90E2;
+}
+
+.admin-label {
+    font-weight: 500;
+}
+
+/* Tooltip on Hover */
+.admin-indicator:hover .admin-label {
+    display: inline-block;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .admin-indicator {
+        top: 10px;
+        right: 10px;
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+
+    .admin-icon {
+        font-size: 1rem;
+    }
+}
+
+
+/* Table Container */
+.table-container {
+    overflow-x: auto;
+    margin-bottom: 30px;
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+/* Styled Table */
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+    text-align: left;
+}
+
+.styled-table th {
+    background: #4A90E2;
+    color: #fff;
+    font-weight: 600;
+}
+
+.styled-table tr {
+    border-bottom: 1px solid #ddd;
+}
+
+.styled-table tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+.styled-table tr:hover {
+    background: #f1f1f1;
+}
+
+/* Actions Column */
+.actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.edit-input {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 150px;
+    margin-right: 10px;
+}
+
+.edit-btn, .delete-btn {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.edit-btn {
+    background: #28a745;
+    color: #fff;
+}
+
+.edit-btn:hover {
+    background: #218838;
+}
+
+.delete-btn {
+    background: #dc3545;
+    color: #fff;
+}
+
+.delete-btn:hover {
+    background: #c82333;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .actions {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .edit-input {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .edit-btn, .delete-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Main Content Styles */
+h1 {
+    text-align: center;
+    margin: 20px 0;
+    color: #4A90E2;
+}
+
+h3 {
+    color: #4A90E2;
+    margin-bottom: 15px;
+}
+
+/* Create Department Card */
+.create-department-card {
+    background: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.create-department-card h3 {
+    color: #4A90E2;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+/* Form Group */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #555;
+}
+
+/* Form Input */
+.form-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-input:focus {
+    border-color: #4A90E2;
+    box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
+    outline: none;
+}
+
+/* Submit Button */
+.submit-btn {
+    background: #4A90E2;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    display: inline-block;
+}
+
+.submit-btn:hover {
+    background: #357ABD;
+    transform: translateY(-2px);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+.activity-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;  /* Ensure it takes full width */
+}
+
+.download-btn {
+    background: #28a745;
+    color: #fff;
+    padding: 10px 20px;
+    float: right;
+    border: none;
+    margin-right: 30px;
+    border-radius: 15px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    /* display: inline-block; */
+}
+
+
+
+.download-btn:hover {
+    background: #2c753d;
+    transform: translateY(-2px);
+}
+
+.download-btn:active {
+    transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .create-department-card {
+        padding: 20px;
+    }
+
+    .form-input {
+        font-size: 0.9rem;
+    }
+
+    .submit-btn {
+        width: 100%;
+        padding: 12px;
+    }
+    .download-btn {
+        width: 100%;
+        padding: 12px;
+    }
+}
+
+
+/* Add Employee Form Styles */
+.glass-container {
+    background: rgba(85, 83, 83, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 90%;
+    max-width: 800px;
+    margin: 20px;
+    margin-left: 210px;
+    
+}
+
+
+.form-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 35px;
+    
+}
+
+
+.form-group-add {
+    position: relative;
+}
+
+.form-group-add label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 0.9rem;
+    color: #fff;
+    background: rgba(74, 144, 226, 0.8);
+    padding: 2px 8px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.form-group-add input,
+.form-group-add select,
+.form-group-add textarea {
+    width: 90%;
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    color: #000;
+    transition: all 0.3s ease;
+}
+
+.form-group-add input:focus,
+.form-group-add select:focus,
+.form-group-add textarea:focus {
+    border-color: #4A90E2;
+    background: rgba(255, 255, 255, 0.2);
+    outline: none;
+    box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
+}
+
+.form-group-add input:focus + label,
+.form-group-add select:focus + label,
+.form-group-add textarea:focus + label,
+.form-group-add input:not(:placeholder-shown) + label,
+.form-group-add select:not(:placeholder-shown) + label,
+.form-group-add textarea:not(:placeholder-shown) + label {
+    top: -10px;
+    left: 10px;
+    font-size: 0.8rem;
+    background: rgba(74, 144, 226, 1);
+    
+}
+
+.form-group-add textarea {
+    resize: vertical;
+    min-height: 100px;
+    
+}
+
+.form-group-add.full-width {
+    grid-column: span 2;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .form-container {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group.full-width {
+        grid-column: span 1;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .header-button {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+}
+
+th {
+    background: #4A90E2;
+    color: #fff;
+    font-weight: 600;
+}
+
+tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+tr:hover {
+    background: #f1f1f1;
+}
+
+/* Main Heading */
+.main-heading {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #4A90E2;
+    margin: 30px 0;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.main-heading::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: #4A90E2;
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+/* Section Heading */
+.section-heading {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #333;
+    margin: 40px 0 20px;
+    padding-left: 10px;
+    border-left: 5px solid #4A90E2;
+}
+
+/* Subsection Heading */
+.subsection-heading {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #555;
+    margin: 30px 0 15px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #ddd;
+}
+
+@media (max-width: 768px) {
+    .main-heading {
+        font-size: 2rem;
+        margin: 20px 0;
+    }
+
+    .section-heading {
+        font-size: 1.75rem;
+        margin: 30px 0 15px;
+    }
+
+    .subsection-heading {
+        font-size: 1.25rem;
+        margin: 20px 0 10px;
+    }
+}
+
+/* Button Styles */
+.approve-btn, .reject-btn, .add {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.approve-btn {
+    background: #28a745;
+    color: #fff;
+}
+
+.approve-btn:hover {
+    background: #218838;
+}
+
+.reject-btn {
+    background: #dc3545;
+    color: #fff;
+}
+
+.reject-btn:hover {
+    background: #c82333;
+}
+
+.add {
+    background: #4A90E2;
+    float: right;
+    border-radius: 25px;
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+.add:hover {
+    background: #357ABD;
+}
+
+/* Message Styles */
+.messages {
+    margin: 20px auto;
+    max-width: 500px; /* Centers the messages */
+    padding: 10px;
+}
+
+/* Remove default list styling */
+.messages ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Message Box */
+.messages ul li {
+    position: relative; /* Ensure close button positioning */
+    padding: 12px 45px 12px 15px; /* Space for close button */
+    margin: 10px 0;
+    border-radius: 6px;
+    text-align: left;
+    font-size: 16px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    animation: fadeIn 0.5s ease-in forwards;
+}
+
+/* Success message */
+.messages .success {
+    background: #d4edda;
+    color: #155724;
+    border-left: 5px solid #28a745;
+}
+
+/* Error message */
+.messages .error {
+    background: #f8d7da;
+    color: #721c24;
+    border-left: 5px solid #dc3545;
+}
+
+/* Close Button */
+.close-btn {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+    background: none;
+    border: none;
+    color: inherit;
+}
+
+.close-btn:hover {
+    opacity: 1;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .headers {
+        flex-wrap: wrap;
+    }
+
+    .headers button {
+        margin: 5px;
+    }
+
+    .dropdown {
+        margin-left: auto;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+    }
+}
+
+
+
+
+/* Style the form */
+.employee-form {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Space between elements */
+    background: #f9f9f9;
+    padding: 12px 16px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: fit-content; /* Adjusts to content size */
+}
+
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .employee-form {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+    }
+}

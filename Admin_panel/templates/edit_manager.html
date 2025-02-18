@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Manager</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    {% load static%}
+    <link rel="stylesheet" href="/static/css/admin_dashboard.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="header-left">
+    <a href="{% url 'admin_dashboard' %}"<button class="header-button logout-btn"><i class="fa fa-arrow-left"></i> Back </button></a><br><br>
+    </div>
+    </header>
+
+    <h1 class="main-heading">Edit Manager</h1>
+    
+    <!-- Display any success or error messages -->
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+    
+    <!-- Edit Manager Form -->
+    <div class="glass-container">
+        <form method="POST" class="form-container">
+    
+        {% csrf_token %}
+        
+        <!-- Manager ID -->
+        <div class="form-group-add">
+            <input type="number" name="manager_id" value="{{ manager.manager_id }}" required>
+        <label>Manager ID:</label>
+        
+    </div>
+
+        <!-- First Name -->
+        <div class="form-group-add">
+            <input type="text" name="first_name" value="{{ manager.first_name }}" required>
+        <label>First Name:</label>
+        
+    </div>
+
+        <!-- Last Name -->
+        <div class="form-group-add">
+            <input type="text" name="last_name" value="{{ manager.last_name }}" required>
+        <label>Last Name:</label>
+        
+    </div>
+
+        <!-- Email -->
+        <div class="form-group-add">
+            <input type="text" name="email" value="{{ manager.email }}" required>
+        <label>Email:</label>
+        
+    </div>
+
+
+        <!-- Phone -->
+        <div class="form-group-add">
+            <input type="tel" name="phone" value="{{ manager.phone }}" required>
+        <label>Phone:</label>
+        
+    </div>
+
+        <!-- Department ID -->
+        <div class="form-group-add">
+            <input type="number" name="department_id" value="{{ manager.department_id }}" required>
+        <label>Department ID:</label>
+        
+    </div>
+
+        {% comment %} <!-- Department Name -->
+        <label>Department Name:</label>
+        <input type="text" name="department_name" value="{{ manager.department_name }}" required><br><br>
+         {% endcomment %}
+        
+        <!-- Submit Button -->
+        <button type="submit" class="submit-btn">Update Manager</button>
+    </form>
+</div>
+    
+</body>
+</html>

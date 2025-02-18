@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    {% load static %}
+    <link rel="stylesheet" href="/static/css/admin_dashboard.css">
+
+
+
+    <header class="header">
+        <div class="header-left">
+    <a href="{% url 'admin_dashboard' %}"<button class="header-button logout-btn"><i class="fa fa-arrow-left"></i> Back </button></a><br><br>
+    </div>
+    </header>
+
+{% block content %}
+<h1 class="main-heading">Employee Leave Requests</h1>
+
+<div class="table-container">
+    <table class="styled-table">
+    <thead>
+        <tr>
+            <th>Employee ID</th>
+            <th>Employee Name</th>
+            <th>Department ID</th>
+            <th>Manager ID</th>
+            <th>Applied At</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Reason</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for leave in leave_requests %}
+        <tr>
+            <td>{{ leave.employee_id }}</td>
+            <td>{{ leave.employee_name }}</td>
+            <td>{{ leave.department_id }}</td>
+            <td>{{ leave.manager_id }}</td>
+            <td>{{ leave.applied_at }}</td>
+            <td>{{ leave.start_date }}</td>
+            <td>{{ leave.end_date }}</td>
+            <td>{{ leave.reason }}</td>
+            <td>{{ leave.status }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6">No leave requests found.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+
+{% endblock %}
+
+
+
+</body>
+</html>

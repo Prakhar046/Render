@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    {% load static %}
+    <link rel="stylesheet" href="/static/css/admin_dashboard.css">
+
+
+
+
+<header class="header">
+    <div class="header-left">
+<a href="{% url 'admin_dashboard' %}"<button class="header-button logout-btn"><i class="fa fa-arrow-left"></i> Back </button></a><br><br>
+</div>
+</header>
+
+
+{% block content %}
+    <h2 class="main-heading">Employee Attendance Records</h2>
+    {% comment %} <a href="{% url 'admin_dashboard' %}">
+        <button class="logout"><i class="fa fa-arrow-left"></i> Back to Dashboard</button>
+    </a> {% endcomment %}
+
+    <!-- Display attendance records grouped by date -->
+    {% for date, records in attendance_by_date.items %}
+        <h3 class="subsection-heading">Date: {{ date }}</h3>
+        <div class="table-container">
+        <table class="styled-table">
+            <tr>
+                <th>Employee ID</th>
+                <th>Employee Name</th>
+                <th>Check-in Time</th>
+                <th>Check-out Time</th>
+                <th>Status</th>
+                <th>Download CSV</th>
+            </tr>
+            {% for record in records %}
+                <tr>
+                    <td>{{ record.employee_id }}</td>
+                    <td>{{ record.employee_name }}</td>
+                    <td>{{ record.start_time }}</td>
+                    <td>{{ record.end_time }}</td>
+                    <td>{{ record.attendance_type }}</td>
+                    <td>
+                        <a href="{% url 'download_attendance_csv' employee_id=record.employee_id %}">
+                            <button class="download-btn">
+                            <i class="fas fa-download"></i> </button></a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    {% endfor %}
+{% endblock %}
+
+
+
+</body>
+</html>

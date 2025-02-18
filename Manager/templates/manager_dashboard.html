@@ -1,0 +1,288 @@
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manager Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    {% load static%}
+    <link rel="stylesheet" href="/static/css/manager.css">
+
+</head>
+<body>
+
+    <header>
+        
+        <a href="/employee/"><button class="employee_management"><i class="fa fa-home"></i></button></a>
+    
+        <a href="/manager/logout/"><button class="employee_management">Logout</button></a>
+        <a href="/manager/edit_manager/"><button class="employee_management">Edit Profile</button></a>
+
+    
+    </header>
+
+
+    <h1>Welcome, {{ manager.first_name }} {{ manager.last_name }}</h1>
+<p><strong>UserName:</strong> {{ manager.username }}</p>
+<p><strong>Email:</strong> {{ manager.email }}</p>
+<p><strong>Phone:</strong> {{ manager.phone }}</p>
+<p><strong>Manager ID:</strong> {{ manager.manager_id }}</p>
+<p><strong>Department ID:</strong> {{ manager.department_id }}</p>
+<p><strong>Department Name:</strong> {{ manager.department_name }}</p>
+
+
+<h3>Pending Leave Requests</h3>
+<table border="1">
+    <tr>
+        <th>Employee</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Reason</th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+    {% for request in leave_requests %}
+    <tr>
+        <td>{{ request.employee_name }}</td>
+        <td>{{ request.start_date }}</td>
+        <td>{{ request.end_date }}</td>
+        <td>{{ request.reason }}</td>
+        <td>{{ request.status }}</td>
+        <td>
+            {% if request.status == "Pending" %}
+            <form method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="request_id" value="{{ request.id }}">
+                <button type="submit" name="action" value="approve">Approve</button>
+                <button type="submit" name="action" value="reject">Reject</button>
+            </form>
+            {% else %}
+            {{ request.status }}
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+
+
+    <h3>Employee Details</h3>
+
+    <a href="/manager/manager_add/"><button class="employee_management">Add Employee</button></a><br>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Employee ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Date of Birth</th>
+                <th>Date of Joining</th>
+                <th>Department ID</th>
+                <th>Department Name</th>
+                <th>Role ID</th>
+                <th>Salary</th>
+                <th>Status</th>
+                <th>Address</th>
+                <th>Created At</th>
+                <th>Updated At</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for employee in employees %}
+            <tr>
+                <td>{{ employee.employee_id }}</td>
+                <td>{{ employee.first_name }}</td>
+                <td>{{ employee.last_name }}</td>
+                <td>{{ employee.email }}</td>
+                <td>{{ employee.phone }}</td>
+                <td>{{ employee.date_of_birth }}</td>
+                <td>{{ employee.date_of_joining }}</td>
+                <td>{{ employee.department_id }}</td>
+                <td>{{ employee.department_name }}</td>
+                <td>{{ employee.role_id }}</td>
+                <td>{{ employee.salary }}</td>
+                <td>{{ employee.status }}</td>
+                <td>{{ employee.address }}</td>
+                <td>{{ employee.created_at }}</td>
+                <td>{{ employee.updated_at }}</td>
+                <td>
+                    <a href="/manager/edit/{{ employee.employee_id }}"><button><i class="fa fa-pencil"></i></button></a>
+                    <a href="/manager/delete/{{ employee.employee_id }}" onclick="return confirm('Are you sure?')"><button><i class="fa fa-trash"></i></button></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html> {% endcomment %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manager Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" href="/static/css/manager.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-left">
+            <label><i class="fa fa-user-tie"></i> Manager</label>
+        </div>
+        <div class="header-right">
+            <a href="/manager/logout/"><button class="header-button logout-btn"><i class="fa fa-sign-out-alt"></i> Logout</button></a>
+        {% comment %} </div>
+        <div class="header-right"> {% endcomment %}
+            <a href="/manager/edit_manager/"><button class="header-button logout-btn"><i class="fa fa-user-tie"></i> Profile</button></a>
+        </div>
+    </header>
+
+
+    <!-- Display Messages -->
+    {% if messages %}
+    <div class="messages">
+    <ul>
+        {% for message in messages %}
+            <li class="{{ message.tags }}">{{ message }}
+                <button class="close-btn" onclick="this.parentElement.style.display='none';">&times;</button>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+
+    <!-- Main Content -->
+    <div class="glass-container">
+        <h1 class="welcome-text">Welcome, {{ manager.first_name }} {{ manager.last_name }}</h1>
+        <div class="manager-details">
+            <p><i class="fas fa-user"></i> <strong>Username : </strong> {{ manager.username }}</p>
+            <p><i class="fas fa-envelope"></i> <strong>Email: </strong> {{ manager.email }}</p>
+            <p><i class="fas fa-phone"></i> <strong>Phone: </strong> {{ manager.phone }}</p>
+            <p><i class="fas fa-id-badge"></i> <strong>Manager ID: </strong> {{ manager.manager_id }}</p>
+            <p><i class="fas fa-building"></i> <strong>Department ID: </strong> {{ manager.department_id }}</p>
+            <p><i class="fas fa-sitemap"></i> <strong>Department Name: </strong> {{ manager.department_name }}</p>
+        </div>
+    </div><br>
+    
+        <!-- Pending Leave Requests -->
+        <h3 class="section-heading">Pending Leave Requests</h3>
+        <div class="table-container">
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Employee</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Reason</th>
+                    <th>Applied At</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for request in leave_requests %}
+                <tr>
+                    <td>{{ request.employee_name }}</td>
+                    <td>{{ request.start_date }}</td>
+                    <td>{{ request.end_date }}</td>
+                    <td>{{ request.reason }}</td>
+                    <td>{{ request.applied_at }}</td>
+                    <td>
+                        {% if request.status == "Pending" %}
+                        <form method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="request_id" value="{{ request.id }}">
+                            <button type="submit" name="action" value="approve" class="approve-btn">Approve</button>
+                            <button type="submit" name="action" value="reject" class="reject-btn">Reject</button>
+                        </form>
+                        {% else %}
+                        {{ request.status }}
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    </div><br>
+
+
+        <!-- Employee Details -->
+        <h3 class="section-heading">Employee Details</h3>
+        <a href="/manager/manager_add/"><button class="add"><i class="fa fa-plus"></i> Add Employee</button></a>
+        <table>
+            <thead>
+                <tr>
+                    <th>Employee ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Date of Birth</th>
+                    <th>Date of Joining</th>
+                    <th>Department ID</th>
+                    <th>Department Name</th>
+                    <th>Role ID</th>
+                    <th>Salary</th>
+                    <th>Status</th>
+                    <th>Address</th>
+                    <th>Created At</th>
+                    <th>Updated At</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for employee in employees %}
+                <tr>
+                    <td>{{ employee.employee_id }}</td>
+                    <td>{{ employee.first_name }}</td>
+                    <td>{{ employee.last_name }}</td>
+                    <td>{{ employee.email }}</td>
+                    <td>{{ employee.phone }}</td>
+                    <td>{{ employee.date_of_birth }}</td>
+                    <td>{{ employee.date_of_joining }}</td>
+                    <td>{{ employee.department_id }}</td>
+                    <td>{{ employee.department_name }}</td>
+                    <td>{{ employee.role_id }}</td>
+                    <td>{{ employee.salary }}</td>
+                    <td>{{ employee.status }}</td>
+                    <td>{{ employee.address }}</td>
+                    <td>{{ employee.created_at }}</td>
+                    <td>{{ employee.updated_at }}</td>
+                    <td>
+                        <a href="/manager/edit/{{ employee.employee_id }}"><button class="edit-btn"><i class="fa fa-pencil"></i></button></a>
+                        <a href="/manager/delete/{{ employee.employee_id }}" onclick="return confirm('Are you sure?')"><button class="delete-btn"><i class="fa fa-trash"></i></button></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

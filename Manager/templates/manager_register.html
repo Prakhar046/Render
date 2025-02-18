@@ -1,0 +1,179 @@
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manager Registration</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    {% load static%}
+    <link rel="stylesheet" href="/static/css/manager.css">
+
+</head>
+<body>
+    <h1 class = "main-heading">Manager Registration</h1>
+
+
+    <!-- Display any messages -->
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+
+    <form method="POST" action="/manager/register/">
+        {% csrf_token %}
+
+        <input type="text" id="username" name="username" required>
+        <label for="username">Username:</label>
+        
+
+        <input type="password" id="password" name="password" required>
+        <label for="password">Password:</label>
+        
+        <input type="password" id="confirm_password" name="confirm_password" required>
+        <label for="confirm_password">Confirm Password:</label>
+       
+
+        <input type="email" id="email" name="email" required>
+        <label for="email">Email:</label>
+        
+
+        <input type="tel" id="phone" name="phone" required>
+        <label for="phone">Phone:</label>
+        
+
+        <input type="text" id="first_name" name="first_name" required>
+        <label for="first_name">First_Name:</label>
+        
+
+        <input type="text" id="last_name" name="last_name" required>
+        <label for="last_name">Last_Name:</label>
+        
+
+
+        <input type="number" id="manager_id" name="manager_id" required>
+        <label for="manager_id">Manager_id:</label>
+       
+
+
+        <input type="number" id="department_id" name="department_id" required>
+        <label for="department_id">Department_Id:</label>
+        
+
+       
+
+        <button type="submit">Register</button><br><br>
+
+        <a href="/manager/login/" class="btn btn-success mx-2">Manager Login</a>
+    </form>
+</body>
+</html> {% endcomment %}
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manager Registration</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" href="/static/css/manager_register.css">
+</head>
+<body>
+    <!-- Glass Morphism Container -->
+    <div class="glass-container">
+        <h1 class="main-heading">Manager Registration</h1>
+
+        <!-- Display Messages -->
+        {% if messages %}
+        <div class="messages">
+        <ul>
+            {% for message in messages %}
+                <li class="{{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+        <!-- Registration Form -->
+        <form method="POST" action="/manager/register/" class="registration-form">
+            {% csrf_token %}
+
+            <!-- Username -->
+            <div class="form-group">
+                <input type="text" id="username" name="username" required placeholder=" ">
+                <label for="username">Username</label>
+            </div>
+
+            <!-- Password -->
+            <div class="form-group">
+                <input type="password" id="password" name="password" required placeholder=" ">
+                <label for="password">Password</label>
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="form-group">
+                <input type="password" id="confirm_password" name="confirm_password" required placeholder=" ">
+                <label for="confirm_password">Confirm Password</label>
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+                <input type="email" id="email" name="email" required placeholder=" ">
+                <label for="email">Email</label>
+            </div>
+
+            <!-- Phone -->
+            <div class="form-group">
+                <input type="tel" id="phone" name="phone" required placeholder=" ">
+                <label for="phone">Phone</label>
+            </div>
+
+            <!-- First Name -->
+            <div class="form-group">
+                <input type="text" id="first_name" name="first_name" required placeholder=" ">
+                <label for="first_name">First Name</label>
+            </div>
+
+            <!-- Last Name -->
+            <div class="form-group">
+                <input type="text" id="last_name" name="last_name" required placeholder=" ">
+                <label for="last_name">Last Name</label>
+            </div>
+
+            <!-- Manager ID -->
+            <div class="form-group">
+                <input type="number" id="manager_id" name="manager_id" required placeholder=" ">
+                <label for="manager_id">Manager ID</label>
+            </div>
+
+            <!-- Department ID -->
+            <div class="form-group">
+                <input type="number" id="department_id" name="department_id" required placeholder=" ">
+                <label for="department_id">Department ID</label>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="submit-btn">Register</button>
+
+            <!-- Login Link -->
+            <div class="login-link">
+                <p>Already have an account? <a href="/manager/login/">Login here</a></p>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

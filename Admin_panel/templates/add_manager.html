@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Manager</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    {% load static%}
+    <link rel="stylesheet" href="/static/css/admin_dashboard.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="header-left">
+    <a href="{% url 'admin_dashboard' %}"<button class="header-button logout-btn"><i class="fa fa-arrow-left"></i> Back </button></a><br><br>
+    </div>
+    </header>
+
+
+    <h1 class="main-heading">Add Manager</h1>
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li style="color: {% if message.tags == 'error' %}red{% else %}green{% endif %};">
+                    {{ message }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <div class="glass-container">
+        <form method="POST" class="form-container">
+
+    {% csrf_token %}
+
+    
+    {% comment %} <label for="username">UserName:</label>
+    <input type="text" name="username" required><br><br>
+
+    <label for="manager_id">Manager ID:</label>
+    <input type="number" name="manager_id" required><br><br>
+
+    <label for="first_name">First Name:</label>
+    <input type="text" name="first_name" required>
+
+    <label for="last_name">Last Name:</label>
+    <input type="text" name="last_name" required><br><br>
+
+    <label for="email">Email:</label>
+    <input type="email" name="email" required><br><br>
+
+    <label for="phone">Phone:</label>
+    <input type="number" name="phone" required><br><br>
+
+    <label for="department_id">Department ID:</label>
+    <input type="number" name="department_id" required><br><br> {% endcomment %}
+
+
+    <div class="form-group-add">
+        <input type="text" name="username" required>
+        <label for="username">UserName:</label>
+    </div>
+
+    <div class="form-group-add">
+    <input type="number" name="manager_id" required>
+    <label for="manager_id">Manager ID:</label>
+</div>
+
+    <div class="form-group-add">
+    <input type="text" name="first_name" required>
+    <label for="first_name">First Name:</label>
+</div>
+
+    <div class="form-group-add">
+    <input type="text" name="last_name" required>
+    <label for="last_name">Last Name:</label>
+</div>
+
+    <div class="form-group-add">
+    <input type="email" name="email" required>
+    <label for="email">Email:</label>
+</div>
+
+    <div class="form-group-add">
+    <input type="tel" name="phone" required>
+    <label for="phone">Phone:</label>
+</div>
+
+    <div class="form-group-add">
+    <input type="number" name="department_id" required>
+    <label for="department_id">Department ID:</label>
+</div><br>
+
+    
+
+    <button type="submit" class="submit-btn">Add Manager</button>
+
+</form>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Employee</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    {% load static%}
+    <link rel="stylesheet" href="/static/css/manager.css">
+
+</head>
+<body>
+
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-left">
+            <a href="/manager/dashboard/"><button class="header-button logout-btn"><i class="fa fa-arrow-left"></i> Back</button></a>
+    </header>
+
+    <h1 class = "main-heading">Add Employee</h1>
+
+    
+
+    <!-- Display Messages -->
+    {% if messages %}
+    <div class="messages">
+    <ul>
+        {% for message in messages %}
+            <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+
+    {% comment %} <form method="POST">
+        {% csrf_token %}
+        <label>Employee ID:</label>
+        <input type="number" name="employee_id" required>
+
+
+        <label>First Name:</label><input type="text" name="first_name" required>
+        <label>Last Name:</label><input type="text" name="last_name" required>
+        <label>Email:</label><input type="email" name="email" required>
+        <label>Phone:</label><input type="number" name="phone" required>
+        <label>Date of Birth:</label><input type="date" name="date_of_birth" required>
+        <label>Date of Joining:</label><input type="date" name="date_of_joining" required>
+        <label>Department ID:</label><input type="number" name="department_id" required>
+        <label>Role ID:</label><input type="number" name="role_id" required>
+        <label>Salary:</label><input type="number" name="salary" required>
+        <label>Status:</label>
+        <select name="status" required>
+            <option value="Active">Active</option>
+            <option value="Inactive">Inactive</option>
+        </select><br><br>
+        <label>Address:</label><textarea name="address" required></textarea><br><br>
+        <button type="submit" class="employee_management">Add Employee</button>
+    </form> {% endcomment %}
+
+
+
+            <!-- Add Employee Form -->
+<div class="container-glass">
+    <form method="POST" class="form-container">
+        {% csrf_token %}
+        <div class="form-group-add">
+            <input type="number" name="employee_id" id="employee_id" required placeholder=" ">
+            <label for="employee_id">Employee ID</label>
+        </div>
+        <div class="form-group-add">
+            <input type="text" name="first_name" id="first_name" required placeholder=" ">
+            <label for="first_name">First Name</label>
+        </div>
+        <div class="form-group-add">
+            <input type="text" name="last_name" id="last_name" required placeholder=" ">
+            <label for="last_name">Last Name</label>
+        </div>
+        <div class="form-group-add">
+            <input type="email" name="email" id="email" required placeholder=" ">
+            <label for="email">Email</label>
+        </div>
+        <div class="form-group-add">
+            <input type="tel" name="phone" id="phone" required placeholder=" ">
+            <label for="phone">Phone</label>
+        </div>
+        <div class="form-group-add">
+            <input type="date" name="date_of_birth" id="date_of_birth" required placeholder=" ">
+            <label for="date_of_birth">Date of Birth</label>
+        </div>
+        <div class="form-group-add">
+            <input type="date" name="date_of_joining" id="date_of_joining" required placeholder=" ">
+            <label for="date_of_joining">Date of Joining</label>
+        </div>
+        <div class="form-group-add">
+            <input type="number" name="department_id" id="department_id" required placeholder=" ">
+            <label for="department_id">Department ID</label>
+        </div>
+        <div class="form-group-add">
+            <input type="number" name="role_id" id="role_id" required placeholder=" ">
+            <label for="role_id">Role ID</label>
+        </div>
+        <div class="form-group-add">
+            <input type="number" name="salary" id="salary" required placeholder=" ">
+            <label for="salary">Salary</label>
+        </div>
+        <div class="form-group-add full-width">
+            <select name="status" id="status" required>
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+            </select>
+            <label for="status">Status</label>
+        </div>
+        <div class="form-group-add full-width">
+            <textarea name="address" id="address" required placeholder=" "></textarea>
+            <label for="address">Address</label>
+        </div>
+        <button type="submit" class="submit-btn">Add Employee</button>
+    </form>
+</div>
+
+
+
+
+</body>
+</html>

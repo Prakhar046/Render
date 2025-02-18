@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Employee</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    {% load static%}
+    <link rel="stylesheet" href="/static/css/manager.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-left">
+            <a href="/manager/dashboard/"><button class="header-button logout-btn"><i class="fa fa-arrow-left"></i> Back</button></a>
+    </header>
+
+    <h1 class = "main-heading">Edit Employee</h1>
+
+
+    <!-- Display Messages -->
+    {% if messages %}
+    <div class="messages">
+    <ul>
+        {% for message in messages %}
+            <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+    {% comment %} <form method="POST">
+        {% csrf_token %}
+        <label>Employee ID:</label><input type="number" name="employee_id" value="{{ employee.employee_id }}" required><br>
+        <label>First Name:</label><input type="text" name="first_name" value="{{ employee.first_name }}" required><br>
+        <label>Last Name:</label><input type="text" name="last_name" value="{{ employee.last_name }}" required><br>
+        <label>Email:</label><input type="email" name="email" value="{{ employee.email }}" required><br>
+        <label>Phone:</label><input type="number" name="phone" value="{{ employee.phone }}" required><br>
+        <label>Date of Birth:</label><input type="date" name="date_of_birth" value="{{ employee.date_of_birth }}" required><br>
+        <label>Date of Joining:</label><input type="date" name="date_of_joining" value="{{ employee.date_of_joining }}" required><br>
+        <label>Department ID:</label><input type="number" name="department_id" value="{{ employee.department_id }}" required><br>
+        <label>Role ID:</label><input type="number" name="role_id" value="{{ employee.role_id }}" required><br>
+        <label>Salary:</label><input type="number" name="salary" value="{{ employee.salary }}" required><br>
+        <label>Status:</label>
+        <select name="status" required>
+            <option value="Active" {% if employee.status == 'Active' %}selected{% endif %}>Active</option>
+            <option value="Inactive" {% if employee.status == 'Inactive' %}selected{% endif %}>Inactive</option>
+        </select><br>
+        <label>Address:</label><textarea name="address" required>{{ employee.address }}</textarea><br>
+        <button type="submit">Update Employee</button>
+    </form> {% endcomment %}
+
+
+    <div class="container-glass">
+        <form method="POST" class="form-container">
+        {% csrf_token %}
+
+        <div class="form-group-add">
+            <input type="number" name="employee_id" value="{{ employee.employee_id }}" required>
+        <label>Employee ID:</label>
+    </div>
+
+        <div class="form-group-add">
+            <input type="text" name="first_name" value="{{ employee.first_name }}" required>
+        <label>First Name:</label>
+    </div>
+
+        <div class="form-group-add">
+            <input type="text" name="last_name" value="{{ employee.last_name }}" required>
+        <label>Last Name:</label>
+    </div>
+
+        <div class="form-group-add">
+            <input type="email" name="email" value="{{ employee.email }}" required>
+        <label>Email:</label>
+    </div>
+
+        <div class="form-group-add">
+            <input type="tel" name="phone" value="{{ employee.phone }}" required>
+        <label>Phone:</label>
+    </div>
+
+
+        {% comment %} <label>Date of Birth:</label><input type="date" name="date_of_birth" value="{{ employee.date_of_birth }}" disabled><br>
+        <label>Date of Joining:</label><input type="date" name="date_of_joining" value="{{ employee.date_of_joining }}" disabled><br> {% endcomment %}
+
+        <div class="form-group-add">
+            <input type="number" name="department_id" value="{{ employee.department_id }}" required>
+        <label>Department ID:</label>
+    </div>
+
+        <div class="form-group-add">
+            <input type="number" name="role_id" value="{{ employee.role_id }}" required>
+        <label>Role ID:</label>
+    </div>
+
+        <div class="form-group-add">
+            <input type="number" name="salary" value="{{ employee.salary }}" required>
+        <label>Salary:</label>
+    </div>
+
+
+        <div class="form-group-add full-width">
+        <select name="status" required>
+            <option value="Active" {% if employee.status == 'Active' %}selected{% endif %}>Active</option>
+            <option value="Inactive" {% if employee.status == 'Inactive' %}selected{% endif %}>Inactive</option>
+        </select>
+        <label>Status:</label>
+    </div>
+
+        <div class="form-group-add full-width">
+            <textarea name="address" required>{{ employee.address }}</textarea>
+        <label>Address:</label>
+    </div>
+
+        <button type="submit" class="submit-btn">Update Employee</button>
+    </form>
+</div>
+
+
+</body>
+</html>
