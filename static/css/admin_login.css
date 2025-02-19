@@ -49,9 +49,7 @@ body.login::before {
     justify-content: flex-end;
 }
 
-.navbar ul li {
-    margin-left: 20px;
-}
+
 
 .navbar ul li a {
     text-decoration: none;
@@ -59,21 +57,24 @@ body.login::before {
 }
 
 .navbar ul li button {
-    background: #fff;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 5px;
+    background: linear-gradient(135deg, #fff, #f8f8f8); /* Gradient background */
+    border: 1px solid #d9d9d9; /* Light border for a polished look */
+    padding: 10px 20px; /* More spacious padding */
+    border-radius: 8px; /* Slightly rounder corners */
     cursor: pointer;
-    transition: background 0.3s ease;
-    color: #4A90E2;
+    transition: background 0.3s ease, transform 0.2s ease; /* Added a smooth transform transition */
+    color: #4A90E2; /* Blue text for buttons */
     font-size: 14px;
-    font-weight: 500;
-}
-
-.navbar ul li button:hover {
-    background: #f0f0f0;
-    color: #357ABD;
-}
+    font-weight: 600; /* Slightly bolder text */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for a floating effect */
+  }
+  
+  .navbar ul li button:hover {
+    background: linear-gradient(135deg, #f0f0f0, #e0e0e0); /* Gradient background on hover */
+    color: #357ABD; /* Darker blue text on hover */
+    transform: translateY(-2px); /* Slight lift on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+  }
 
 /* Login Container Styles */
 .login-container {

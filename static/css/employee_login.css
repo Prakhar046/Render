@@ -50,9 +50,7 @@ body::before {
 
 }
 
-.navbar ul li {
-  margin-left: 20px;
-}
+
 
 .navbar ul li a {
   text-decoration: none;
@@ -60,16 +58,23 @@ body::before {
 }
 
 .navbar ul li button {
-  background: #fff;
-  border: none;
-  padding: 8px 15px;
-  border-radius: 5px;
+  background: linear-gradient(135deg, #fff, #f8f8f8); /* Gradient background */
+  border: 1px solid #d9d9d9; /* Light border for a polished look */
+  padding: 10px 20px; /* More spacious padding */
+  border-radius: 8px; /* Slightly rounder corners */
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background 0.3s ease, transform 0.2s ease; /* Added a smooth transform transition */
+  color: #4A90E2; /* Blue text for buttons */
+  font-size: 14px;
+  font-weight: 600; /* Slightly bolder text */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for a floating effect */
 }
 
 .navbar ul li button:hover {
-  background: #f0f0f0;
+  background: linear-gradient(135deg, #f0f0f0, #e0e0e0); /* Gradient background on hover */
+  color: #357ABD; /* Darker blue text on hover */
+  transform: translateY(-2px); /* Slight lift on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
 }
 
 /* Push the Register button to the right */
@@ -97,7 +102,7 @@ body::before {
   text-shadow: 0 0 10px cyan, 0 0 20px cyan, 0 0 40px cyan, 0 0 80px cyan;
 }
 
-/* Form Styles */
+/* Form Group */
 .form-group {
   position: relative;
   margin-bottom: 20px;
@@ -105,23 +110,41 @@ body::before {
 
 .form-group input {
   width: 100%;
-  height: 40px;
-  padding: 10px;
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  border-radius: 5px;
-  outline: none;
+  padding: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.1);
   color: #fff;
-  font-size: 16px;
-  transition: border-color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .form-group input:focus {
-  border-color: cyan;
+  border-color: #4A90E2;
+  background: rgba(255, 255, 255, 0.2);
+  outline: none;
+  box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
 }
 
-.form-group input::placeholder {
-  color: rgba(255, 255, 255, 0.7);
+.form-group label {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 0.9rem;
+  color: #fff;
+  background: rgba(74, 144, 226, 0.8);
+  padding: 2px 8px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.form-group input:focus + label,
+.form-group input:not(:placeholder-shown) + label {
+  top: -10px;
+  left: 10px;
+  font-size: 0.8rem;
+  background: rgba(74, 144, 226, 1);
 }
 
 /* Button Styles */
