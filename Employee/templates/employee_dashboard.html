@@ -303,7 +303,7 @@
                 <h2>Attendance</h2>
                 
                 {% if attendance %}
-                    <p><strong>Attendance Started:</strong> {{ attendance.start_time }}</p>
+                    <p><strong>Your Day Started at:</strong> {{ attendance.start_time }}</p>
                 {% else %}
                     <p>No active attendance session.</p>
                 {% endif %}
@@ -311,7 +311,7 @@
                 <form method="post">
                     {% csrf_token %}
                     <button type="submit" name="start_stop_button" class="btn-start">
-                        {% if attendance %} Conclude Your Day {% else %} 🚀 Launch Your Day {% endif %}
+                        {% if attendance %} 💼 Conclude Your Day {% else %} 🚀 Launch Your Day {% endif %}
                     </button>
                 </form>
             </div>
