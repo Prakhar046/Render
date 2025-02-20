@@ -28,7 +28,9 @@
 <div class="messages">
     <ul>
         {% for message in messages %}
-            <li class="{{ message.tags }}">{{ message }}</li>
+            <li class="{{ message.tags }}">{{ message }}
+                <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
+            </li>
         {% endfor %}
     </ul>
 </div>

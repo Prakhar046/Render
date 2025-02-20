@@ -19,13 +19,17 @@
 
     <h1 class="main-heading">Edit Manager</h1>
     
-    <!-- Display any success or error messages -->
+    <!-- Messages -->
     {% if messages %}
-        <div class="messages">
+    <div class="messages">
+        <ul>
             {% for message in messages %}
-                <p>{{ message }}</p>
+                <li class="{{ message.tags }}">{{ message }}
+                    <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
+                </li>
             {% endfor %}
-        </div>
+        </ul>
+    </div>
     {% endif %}
     
     <!-- Edit Manager Form -->

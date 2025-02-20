@@ -20,14 +20,19 @@
 
 
     <h1 class="main-heading">Add Manager</h1>
+
+
+    <!-- Messages -->
     {% if messages %}
+    <div class="messages">
         <ul>
             {% for message in messages %}
-                <li style="color: {% if message.tags == 'error' %}red{% else %}green{% endif %};">
-                    {{ message }}
+                <li class="{{ message.tags }}">{{ message }}
+                    <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
                 </li>
             {% endfor %}
         </ul>
+    </div>
     {% endif %}
 
     <div class="glass-container">
