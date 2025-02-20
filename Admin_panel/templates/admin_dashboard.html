@@ -698,8 +698,10 @@
         <h2 class="section-heading">Manager Details</h2>
         <a href="/admin/add-manager/"><button class="add">Add Manager</button></a>
 
+        
         <!-- Pending Manager Registrations -->
     <h3 class="subsection-heading">Pending Manager Registrations</h3>
+    <div class="table-container">
     <table>
         <tr>
             <th>Manager ID</th>
@@ -731,7 +733,9 @@
         </tr>
         {% endfor %}
     </table><br><br>
+</div>
 
+    <div class="table-container">
     <!-- Manager -->
     <h3 class="subsection-heading">Existing Managers </h3>
         <table>
@@ -771,15 +775,19 @@
                 {% endfor %}
             </tbody>
         </table>
+    </div>
     </section><br><br><br>
 
     <!-- Employee Details -->
     <section id="Employee">
+        
         <h2 class="section-heading">Employee Details</h2>
         <a href="/admin/admin_add/"><button class="add">Add Employee</button></a>
 
+        
         <!-- Pending Employee Approvals -->
     <h3 class="subsection-heading">Pending Employee Approvals</h3>
+    <div class="table-container">
     <table>
         <tr>
             <th>Employee ID</th>
@@ -811,8 +819,10 @@
         </tr>
         {% endfor %}
     </table><br><br>
+</div>
 
     <h3 class="subsection-heading">Existing Employees</h3>
+    <div class="table-container">
         <!-- Display Employees Grouped by Department -->
         {% for department_id, employees in employees_by_department.items %}
         <h4>Department ID: {{ department_id }}</h4>
@@ -865,7 +875,7 @@
             </tbody>
         </table>
     {% endfor %}
-
+    </div>
     </section>
 
     <!-- Smooth Scroll Script -->

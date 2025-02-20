@@ -291,7 +291,7 @@ body {
 }
 
 .marquee-container {
-    width: 100%;
+    width: 98%;
     overflow: hidden;
     background: linear-gradient(to right, #007bff, #00c6ff);
     padding: 10px;
