@@ -216,6 +216,19 @@ def manager_edit(request):
         return redirect('manager_login')
 
     if request.method == "POST":
+        
+         # Get form data
+        department_id = int(request.POST.get("department_id"))
+        
+        # Check if the department_id exists in department_collection
+        department = department_collection.find_one({"department_id": department_id})
+        if not department:
+            messages.error(request, "Invalid Department ID. Please enter a valid department.")
+            return render(request, "manager_edit.html", {"manager": manager})
+
+        # Fetch the department name
+        department_name = department["department_name"]
+        
         # Update the manager's details from the form data
         updated_data = {
             "username": request.POST.get("username"),
@@ -224,10 +237,14 @@ def manager_edit(request):
             "last_name": request.POST.get("last_name"),
             "email": request.POST.get("email"),
             "phone": request.POST.get("phone"),
-            "department_id":int(request.POST.get("department_id")),
-            "department_name":request.POST.get("department_name"),
+            # "department_id":int(request.POST.get("department_id")),
+            # "department_name":request.POST.get("department_name"),
+            "department_id": department_id,
+            "department_name": department_name,  # Set the correct department name
             "updated_at": datetime.datetime.now(),
         }
+        
+         
 
         # Check if the new username or manager_id is already in use
         username_exists = (

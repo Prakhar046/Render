@@ -156,6 +156,7 @@
             <label><i class="fa fa-user-tie"></i> Manager</label>
         </div>
         <div class="header-right">
+            <a href="/manager/manager_add/"><button class="header-button logout-btn"><i class="fa fa-plus"></i> Add Employee</button></a>
             <a href="/manager/logout/"><button class="header-button logout-btn"><i class="fa fa-sign-out-alt"></i> Logout</button></a>
         {% comment %} </div>
         <div class="header-right"> {% endcomment %}
@@ -235,7 +236,10 @@
 
         <!-- Employee Details -->
         <h3 class="section-heading">Employee Details</h3>
-        <a href="/manager/manager_add/"><button class="add"><i class="fa fa-plus"></i> Add Employee</button></a>
+        
+        {% comment %} <a href="/manager/manager_add/"><button class="add"><i class="fa fa-plus"></i> Add Employee</button></a> {% endcomment %}
+
+        <div class="table-container">
         <table>
             <thead>
                 <tr>

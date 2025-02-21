@@ -260,7 +260,9 @@ body {
 }
 
 .dropdown-content a:hover {
+    scale: 1.1;
     background: #f4f7fa;
+    transform: translateX(10px);
 }
 
 .dropdown:hover .dropdown-content {
@@ -292,6 +294,7 @@ body {
 
 .marquee-container {
     width: 98%;
+    margin-left: 2px;
     overflow: hidden;
     background: linear-gradient(to right, #007bff, #00c6ff);
     padding: 10px;
@@ -823,6 +826,7 @@ tr:hover {
     float: right;
     border-radius: 25px;
     color: #fff;
+    margin-right: 20px;
     margin-bottom: 15px;
 }
 
